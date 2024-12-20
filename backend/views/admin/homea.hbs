@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+        }
+        .navbar .menu-toggle {
+            font-size: 20px;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .navbar .menu {
+            display: none;
+            flex-direction: column;
+            background-color: #333;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navbar .menu a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: block;
+        }
+        .navbar .menu a:hover {
+            background-color: #575757;
+        }
+        .navbar .logout {
+            color: white;
+            background-color: #f44336;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .navbar .logout:hover {
+            background-color: #d32f2f;
+        }
+        .container {
+            padding: 20px;
+            text-align: center;
+        }
+        .welcome-message {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .admin-actions {
+            margin-top: 30px;
+            text-align: left;
+            max-width: 600px;
+            margin: 30px auto;
+        }
+        .admin-actions button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .admin-actions button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.navbar .menu');
+            const toggleButton = document.querySelector('.navbar .menu-toggle');
+            if (menu.style.display === 'flex') {
+                menu.style.display = 'none';
+                toggleButton.textContent = '☰';
+            } else {
+                menu.style.display = 'flex';
+                toggleButton.textContent = '✖';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <div class="menu">
+            <a href="/home">Home</a>
+            <a href="/admin/users">Manage Users</a>
+            <a href="/admin/settings">Settings</a>
+        </div>
+        <button class="logout" onclick="window.location.href='/logout'">Logout</button>
+    </div>
+
+    <div class="container">
+        <div class="welcome-message">
+            Welcome back, <span id="username">Admin</span>!
+        </div>
+        <p>Use the menu to navigate through admin-specific functions.</p>
+
+        <div class="admin-actions">
+            <button onclick="window.location.href='/admin/users'">View All Users</button>
+            <button onclick="window.location.href='/admin/register'">Register New User</button>
+            <button onclick="window.location.href='/admin/settings'">Edit Settings</button>
+        </div>
+    </div>
+
+    <script>
+        // Replace "Admin" with the actual admin username if needed
+        document.getElementById('username').textContent = "Admin John Doe"; // Example username
+    </script>
+</body>
+</html>
